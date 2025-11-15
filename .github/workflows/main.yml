@@ -18,6 +18,13 @@ jobs:
                              -Name "UserAuthentication" -Value 0 -Force
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' `
                              -Name "SecurityLayer" -Value 0 -Force
+                             # Enable clipboard copy-paste
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' `
+    -Name "fDisableCcm" -Value 0 -Force
+
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' `
+    -Name "fDisableClip" -Value 0 -Force
+
 
           # Remove any existing rule with the same name to avoid duplication
           netsh advfirewall firewall delete rule name="RDP-Tailscale"
